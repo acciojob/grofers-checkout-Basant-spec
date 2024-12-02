@@ -1,38 +1,41 @@
-// Create the "Get Total Price" button dynamically
+// Create a button to trigger the sum calculation
 const getSumBtn = document.createElement("button");
 getSumBtn.append("Get Total Price");
 document.body.appendChild(getSumBtn);
 
-// Function to calculate the sum of all prices
+// Function to calculate the total price
 const getSum = () => {
-  // Get all elements with the class "price" (these are the price cells in the table)
+  // Get all the price elements from the table
   const prices = document.querySelectorAll(".price");
-  
-  // Initialize the total sum to 0
+
+  // Initialize a variable to hold the total sum of prices
   let total = 0;
 
-  // Loop through each price element and add its value to the total
+  // Loop through each price element, convert the text to a number, and add it to the total
   prices.forEach(price => {
-    total += parseFloat(price.textContent);  // parseFloat ensures we are dealing with numbers
+    total += parseFloat(price.textContent);  // Convert text content to number (float)
   });
 
-  // Create a new row for the total price
+  // Create a new table row for the total price
   const totalRow = document.createElement("tr");
 
-  // Create a cell for the "Total Price" label and append it to the row
+  // Create a cell for the "Total Price" label and add it to the row
   const labelCell = document.createElement("td");
-  labelCell.textContent = "Total Price";
+  labelCell.textContent = "Total Price";  // Set the label for the total row
   totalRow.appendChild(labelCell);
 
-  // Create a cell for the total price and append it to the row
+  // Create a cell for the total value and add it to the row
   const totalCell = document.createElement("td");
-  totalCell.textContent = total;  // Display the total price
+  totalCell.textContent = total;  // Display the calculated total sum
   totalRow.appendChild(totalCell);
+
+  // Assign the ID "ans" to the new row
+  totalRow.id = "ans";
 
   // Append the new row to the table
   const table = document.querySelector("table");
   table.appendChild(totalRow);
 };
 
-// Add the event listener to the button to trigger the getSum function when clicked
+// Add an event listener to the "Get Total Price" button to trigger the getSum function
 getSumBtn.addEventListener("click", getSum);
